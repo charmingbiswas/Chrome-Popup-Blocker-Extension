@@ -1,0 +1,1 @@
+console.log('Webpack has successfully compiled and built ts file')
