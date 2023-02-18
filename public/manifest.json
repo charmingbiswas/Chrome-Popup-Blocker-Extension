@@ -1,0 +1,13 @@
+{
+    "manifest_version": "3",
+    "name": "Chrome Popup Blocker Extension",
+    "version": "1.0.0",
+    "default_locale": "en",
+    "description": "This extension blocks the pesky and rather irritating effect of automatically opening new tabs and redirecting the user to some random page when a user clicks on a website.",
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "author": {
+        "email": "charmingbiswas@gmail.com"
+    }
+}

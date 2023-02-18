@@ -1,5 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -9,10 +11,18 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: '[name].js',
     },
-    devtool: 'inline-source-map',
     plugins: [
+        new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             template: path.resolve(__dirname, 'public/index.html'),
+            filename: 'popup.html',
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: 'public',
+                },
+            ],
         }),
     ],
     module: {
@@ -25,6 +35,6 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
 };
