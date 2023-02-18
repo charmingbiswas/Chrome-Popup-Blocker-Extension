@@ -5,26 +5,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, 'src/index.ts'),
+        main: path.resolve(__dirname, 'src/index.tsx'),
     },
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: '[name].js',
     },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HTMLWebpackPlugin({
-            template: path.resolve(__dirname, 'public/index.html'),
-            filename: 'popup.html',
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: 'public',
-                },
-            ],
-        }),
-    ],
+    plugins: [new CleanWebpackPlugin()],
     module: {
         rules: [
             {
