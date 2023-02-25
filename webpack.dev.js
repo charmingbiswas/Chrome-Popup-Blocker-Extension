@@ -12,9 +12,4 @@ module.exports = merge(webpackConfig, {
         port: 3000,
         hot: true,
     },
-    plugins: [
-        new HTMLWebpackPlugin({
-            template: path.resolve(__dirname, 'public/index.html'),
-        }),
-    ],
 });
