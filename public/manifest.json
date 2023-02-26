@@ -7,16 +7,24 @@
         "default_popup": "popup.html"
     },
     "author": {
+        "name": "Riyansh Biswas",
         "email": "charmingbiswas@gmail.com"
     },
-    "permissions": ["activeTab", "scripting"],
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "scripting",
+        "declarativeNetRequest",
+        "webNavigation"
+    ],
     "background": {
         "service_worker": "background.js",
         "type": "module"
     },
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
+            "matches": ["https://*/*"],
+            "all_frames": false,
             "js": ["content.js"],
             "runAt": "document_start"
         }
