@@ -5,16 +5,19 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, 'src/index.tsx'),
-        background: path.resolve(__dirname, 'src/backgroundScript.ts'),
-        content: path.resolve(__dirname, 'src/contentScript.ts'),
+        main: path.resolve(__dirname, 'src/index.tsx'), //main script which embeds into popup.html page
+        background: path.resolve(__dirname, 'src/backgroundScript.ts'), //chrome extension background script (service worker)
+        content: path.resolve(__dirname, 'src/contentScript.ts'), //content script which embeds on the webpage being browsed
     },
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: '[name].js',
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanStaleWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: path.resolve(__dirname, 'build'),
+        }),
         new HTMLWebpackPlugin({
             template: path.resolve(__dirname, 'public/index.html'),
             filename: 'popup.html',
@@ -24,6 +27,12 @@ module.exports = {
                 {
                     from: path.resolve(__dirname, 'public'),
                     to: path.resolve(__dirname, 'build'),
+                    globOptions: {
+                        ignore: [
+                            path.resolve(__dirname, 'public/index.html'), //ignore copying index.html because a separate popup.html is already generated
+                            path.resolve(__dirname, 'public/easyList.txt'), //ignore this blockist file from being in the main build as it is not needed and increases build size tremendously
+                        ],
+                    },
                 },
             ],
         }),

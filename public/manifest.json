@@ -28,5 +28,14 @@
             "js": ["content.js"],
             "runAt": "document_start"
         }
-    ]
+    ],
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "ruleset_1",
+                "enabled": true,
+                "path": "rules.json"
+            }
+        ]
+    }
 }

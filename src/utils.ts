@@ -10,3 +10,15 @@ export async function getCurrentTab() {
     console.log(tab);
     return tab;
 }
+
+//Fetch easyList block list of ad urls
+export const fetchBlockList = async () => {
+    const response = await fetch('https://easylist.to/easylist/easylist.txt');
+    const textFile = await response.text();
+    const blockListArray = textFile.split('\n');
+    return blockListArray;
+};
+
+// export const buildStaticBlockList = () => {
+//     console.log(path.resolve(__dirname, '../public/'));
+// };
