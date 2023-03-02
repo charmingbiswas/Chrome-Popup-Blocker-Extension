@@ -4,6 +4,8 @@
     "description": "My custom extention to block nasty popups that crop up on clicks when browsing shady websites",
     "main": "src/index.tsx",
     "scripts": {
+        "prebuild": "webpack --config ./src/customWebpackPlugins/webpack.config.js",
+        "prestart": "webpack --config ./src/customWebpackPlugins/webpack.config.js",
         "build": "webpack --config webpack.prod.js",
         "start": "webpack --watch --progress --config webpack.dev.js"
     },

@@ -3,6 +3,7 @@ const fs = require('fs');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const BlockListGeneratorPlugin = require('./src/customWebpackPlugins/dist/BlockListGeneratorPlugin'); //Custom webpack plugin to generate static block rules json file using easyList.txt
 
 module.exports = {
     entry: {
@@ -37,13 +38,17 @@ module.exports = {
                 },
             ],
         }),
+        new BlockListGeneratorPlugin(),
     ],
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: '/node_modules/',
+                exclude: [
+                    '/node_modules/',
+                    path.resolve(__dirname, 'src/customWebpackPlugin'),
+                ],
             },
         ],
     },
