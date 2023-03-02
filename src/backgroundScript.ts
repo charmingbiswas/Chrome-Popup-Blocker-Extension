@@ -1,3 +1,4 @@
+//TODO - Doesn't do much as of now, will implement new features in the future
 import { fetchBlockList } from './utils';
 
 let urlBlockList = []; //In memory block list

@@ -18,7 +18,3 @@ export const fetchBlockList = async () => {
     const blockListArray = textFile.split('\n');
     return blockListArray;
 };
-
-// export const buildStaticBlockList = () => {
-//     console.log(path.resolve(__dirname, '../public/'));
-// };
